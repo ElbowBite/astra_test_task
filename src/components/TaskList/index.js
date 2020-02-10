@@ -91,7 +91,9 @@ const TaskList = () => {
     <>
       <div className={styles.Timer} />
       <div className={styles.List}>
-        <div className="lds-ring"><div /><div /><div /><div /></div>
+        <div className="spinnerContainer">
+          <div className="lds-ring"><div /><div /><div /><div /></div>
+        </div>
       </div>
     </>
   );
