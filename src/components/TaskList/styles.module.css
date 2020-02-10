@@ -21,10 +21,13 @@
 .TimerText {
   font-size: 13px;
   font-weight: 600;
-  width: 100%;
+  width: 80%;
   position: absolute;
   bottom: 23px;
   left: 0;
+}
+.TimerText:last-child {
+  width: 100%;
 }
 
 .TimerDetails {
@@ -34,10 +37,10 @@
   text-align: center;
 }
 .TimerDays {
-  left: 225px;
+  left: 215px;
 }
 .TimerHours {
-  left: 275px;
+  left: 270px;
 }
 .TimerMinutes {
   left: 325px;
@@ -64,36 +67,38 @@
   /* text-align: center; */
 }
 .Task:first-child {
-  padding-top: 35px;
+  padding-top: 45px;
 }
 
 .Image {
-  -webkit-transform: scale(0.75) rotate(15deg);
-  transform: scale(0.75) rotate(15deg);
+  -webkit-transform: scale(0.8) rotate(15deg);
+  transform: scale(0.8) rotate(15deg);
 }
 
 .Details {
-  display: inline;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 97px;
   width: 50%;
   padding: 10px;
-  margin: auto;
 }
 
 .Text {
-  position: absolute;
-  top: 0;
-  left: 0;
   font-weight: bold;
   text-align: left;
+  margin-top: 10px;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 .Apply {
   font-size: 15px;
   height: 35px;
-  width: 33%;
-  margin: auto;
+  cursor: pointer;
   background-image: radial-gradient(
     #f2d965,
     #c1b056

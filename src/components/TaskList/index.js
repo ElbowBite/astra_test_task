@@ -6,16 +6,13 @@ import styles from './styles.module.css';
 
 const TaskList = () => {
   const [tList, updateTList] = useState([]);
-  const [endTime, updateEndTime] = useState();
   const [timeLeft, updateTimeleft] = useState();
   const [tasksOpen, updateVisibility] = useState(true);
 
-  const timer = React.useRef();
-
   const taskTypes = {
-    time: 'Выйграть три игры, каждую менее чем за 3 минуты',
-    kings: 'Выйграть три игры, разложив всех королей',
-    tournaments: 'Выйграть пять турниров подряд',
+    time: 'Выиграть три игры, каждую менее чем за 3 минуты',
+    kings: 'Выиграть три игры, разложив всех королей',
+    tournaments: 'Выиграть пять турниров подряд',
   };
 
   useEffect(() => {
@@ -25,7 +22,6 @@ const TaskList = () => {
         const neededTasks = data.tasks;
         neededTasks.length = 3;
         updateTList(neededTasks);
-        updateEndTime(data.endsAt);
         updateTimeleft(moment(data.endsAt).diff(moment().utc()));
       })
       .catch((err) => alert(err));
@@ -34,6 +30,13 @@ const TaskList = () => {
   const handleClick = (newState) => {
     updateVisibility(newState);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updateTimeleft(timeLeft - 1000);
+    }, 1000);
+    return clearInterval(timer);
+  });
 
   if (timeLeft) {
     const tasksView = tList.map((task) => (
@@ -45,36 +48,33 @@ const TaskList = () => {
             <span style={{ width: `${task.progress}%` }} />
           </div>
         </div>
-        <button
-          type="button"
-          style={{ opacity: task.progress === 100 ? 1 : 0, cursor: 'pointer' }}
-          className={styles.Apply}
-          onClick={() => handleClick(false)}
-        >
-          Назначить рубашку
-        </button>
+        <div className={styles.buttonContainer}>
+          <button
+            type="button"
+            style={{ opacity: task.progress === 100 ? 1 : 0 }}
+            className={styles.Apply}
+          >
+            Назначить рубашку
+          </button>
+        </div>
       </div>
     ));
-
-    timer.current = setTimeout(() => {
-      updateTimeleft(timeLeft - 1000);
-    }, 1000);
 
     const viewTime = moment.duration(timeLeft)._data;
     return (
       <div style={{ display: tasksOpen === true ? true : 'none' }}>
         <div className={styles.Timer}>
           <div className={`${styles.TimerDetails} ${styles.TimerDays}`}>
-            <span className={styles.TimerTime}>{viewTime.days}</span>
+            <span className={styles.TimerTime}>{viewTime.days} :</span>
             <span className={styles.TimerText}>дней</span>
           </div>
           <div className={`${styles.TimerDetails} ${styles.TimerHours}`}>
-            <span className={styles.TimerTime}>{viewTime.hours}</span>
+            <span className={styles.TimerTime}>{viewTime.hours} :</span>
             <span className={styles.TimerText}>часов
             </span>
           </div>
           <div className={`${styles.TimerDetails} ${styles.TimerMinutes}`}>
-            <span className={styles.TimerTime}>{viewTime.minutes}</span>
+            <span className={styles.TimerTime}>{viewTime.minutes} :</span>
             <span className={styles.TimerText}>минут</span>
           </div>
           <div className={`${styles.TimerDetails} ${styles.TimerSeconds}`}>
