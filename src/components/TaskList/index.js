@@ -27,16 +27,18 @@ const TaskList = () => {
       .catch((err) => alert(err));
   }, []);
 
+  useEffect(() => {
+    console.log('UseEffect called!');
+    const timer = setTimeout(() => {
+      console.log('Timer ticked!');
+      updateTimeleft(timeLeft - 1000);
+    }, 1000);
+    return () => clearTimeout(timer);
+  });
+
   const handleClick = () => {
     updateVisibility('none');
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      updateTimeleft(timeLeft - 1000);
-    }, 1000);
-    return clearInterval(timer);
-  });
 
   if (timeLeft) {
     const tasksView = tList.map((task) => (
