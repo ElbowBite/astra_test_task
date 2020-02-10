@@ -1,0 +1,51 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "linebreak-style": "off",
+    "react/require-default-props": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/label-has-for": "off",
+    "react/prefer-stateless-function": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "import/prefer-default-export": [0],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": ["array", "object"]
+      }
+    ],
+    "jsx-a11y/alt-text": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/no-unescaped-entities": [0],
+    "react/no-danger": "off",
+    "no-plusplus": "off",
+    "func-names": ["warn", "as-needed"],
+    "object-curly-newline": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "import/no-useless-path-segments": "off",
+    "react/destructuring-assignment": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    },
+    "ecmascript": 6,
+    "jsx": true
+  },
+  "globals": {
+    "google": true
+  },
+  "plugins": ["react"]
+}

@@ -1,0 +1,69 @@
+.List {
+  width: 647px;
+  height: 437px;
+  text-align: center;
+  margin: auto;
+  background-image: url('../../assets/images/background.png');
+  background-repeat: no-repeat;
+}
+
+.Task {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  height: 25%;
+  margin: auto;
+  text-align: center;
+}
+.Task:first-child {
+  padding-top: 35px;
+}
+
+.Image {
+  -webkit-transform: scale(0.75) rotate(15deg);
+  transform: scale(0.75) rotate(15deg);
+}
+
+.Details {
+  display: inline;
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+}
+
+
+.Apply {
+  width: 33%;
+  margin: auto;
+}
+
+.ProgressBar {
+  height: 20px;
+  position: relative;
+  background: #555;
+  border: 2px solid #fffdd6;
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+}
+
+.ProgressBar > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #a3b552;
+  background-image: linear-gradient(
+    to bottom,
+    #a3b552,
+    #757d4a
+  );
+  box-shadow: 
+    inset 0 2px 9px  rgba(255,255,255,0.3),
+    inset 0 -2px 6px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+}

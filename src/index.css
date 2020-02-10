@@ -1,4 +1,9 @@
 body {
+  background-image: url('./assets/images/side-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
