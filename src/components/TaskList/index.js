@@ -8,6 +8,7 @@ const TaskList = () => {
   const [tList, updateTList] = useState([]);
   const [endTime, updateEndTime] = useState();
   const [timeLeft, updateTimeleft] = useState();
+  const [tasksOpen, updateVisibility] = useState(true);
 
   const timer = React.useRef();
 
@@ -30,15 +31,9 @@ const TaskList = () => {
       .catch((err) => alert(err));
   }, []);
 
-  useEffect(() => {
-    if (timeLeft) {
-      console.log('UseEffect with timer called!');
-      timer.current = setInterval(() => {
-        updateTimeleft(timeLeft - 1);
-      }, 1000);
-    }
-    return clearInterval(timer.current);
-  }, [timeLeft]);
+  const handleClick = (newState) => {
+    updateVisibility(newState);
+  };
 
   if (timeLeft) {
     const tasksView = tList.map((task) => (
@@ -52,20 +47,22 @@ const TaskList = () => {
         </div>
         <button
           type="button"
-          style={{ opacity: task.progress === 100 ? 1 : 0 }}
+          style={{ opacity: task.progress === 100 ? 1 : 0, cursor: 'pointer' }}
           className={styles.Apply}
+          onClick={() => handleClick(false)}
         >
           Назначить рубашку
         </button>
       </div>
     ));
 
-    console.log(endTime);
-    console.log(timeLeft);
+    timer.current = setTimeout(() => {
+      updateTimeleft(timeLeft - 1000);
+    }, 1000);
 
-    const viewTime = moment.duration(timeLeft, 'seconds')._data;
+    const viewTime = moment.duration(timeLeft)._data;
     return (
-      <>
+      <div style={{ display: tasksOpen === true ? true : 'none' }}>
         <div className={styles.Timer}>
           <div className={`${styles.TimerDetails} ${styles.TimerDays}`}>
             <span className={styles.TimerTime}>{viewTime.days}</span>
@@ -86,7 +83,7 @@ const TaskList = () => {
           </div>
         </div>
         <div className={styles.List}>{tasksView}</div>
-      </>
+      </div>
     );
   }
   return (
