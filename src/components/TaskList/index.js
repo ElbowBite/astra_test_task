@@ -27,8 +27,8 @@ const TaskList = () => {
       .catch((err) => alert(err));
   }, []);
 
-  const handleClick = (newState) => {
-    updateVisibility(newState);
+  const handleClick = () => {
+    updateVisibility('none');
   };
 
   useEffect(() => {
@@ -53,6 +53,7 @@ const TaskList = () => {
             type="button"
             style={{ opacity: task.progress === 100 ? 1 : 0 }}
             className={styles.Apply}
+            onClick={handleClick}
           >
             Назначить рубашку
           </button>
@@ -62,7 +63,7 @@ const TaskList = () => {
 
     const viewTime = moment.duration(timeLeft)._data;
     return (
-      <div style={{ display: tasksOpen === true ? true : 'none' }}>
+      <div style={{ display: tasksOpen }}>
         <div className={styles.Timer}>
           <div className={`${styles.TimerDetails} ${styles.TimerDays}`}>
             <span className={styles.TimerTime}>{viewTime.days} :</span>
