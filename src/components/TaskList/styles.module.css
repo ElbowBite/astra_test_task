@@ -1,7 +1,55 @@
+.Timer {
+  width: 680px;
+  height: 186px;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  background-image: url('../../assets/images/header.png');
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.TimerTime {
+  font-size: 30px;
+  font-weight: 700;
+  width: 100%;
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+}
+
+.TimerText {
+  font-size: 13px;
+  font-weight: 600;
+  width: 100%;
+  position: absolute;
+  bottom: 23px;
+  left: 0;
+}
+
+.TimerDetails {
+  width: 55px;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+.TimerDays {
+  left: 225px;
+}
+.TimerHours {
+  left: 275px;
+}
+.TimerMinutes {
+  left: 325px;
+}
+.TimerSeconds {
+  left: 375px;
+}
+
 .List {
   width: 647px;
   height: 437px;
-  text-align: center;
+  /* text-align: center; */
   margin: auto;
   background-image: url('../../assets/images/background.png');
   background-repeat: no-repeat;
@@ -13,7 +61,7 @@
   width: 85%;
   height: 25%;
   margin: auto;
-  text-align: center;
+  /* text-align: center; */
 }
 .Task:first-child {
   padding-top: 35px;
@@ -26,19 +74,36 @@
 
 .Details {
   display: inline;
+  position: relative;
+  height: 97px;
   width: 50%;
   padding: 10px;
   margin: auto;
 }
 
+.Text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: bold;
+  text-align: left;
+}
 
 .Apply {
+  font-size: 15px;
+  height: 30px;
   width: 33%;
   margin: auto;
+  background-image: radial-gradient(
+    #f2d965,
+    #c1b056
+  );
+  border: 3px solid #000;
+  border-radius: 5px;
 }
 
 .ProgressBar {
-  height: 20px;
+  height: 18px;
   position: relative;
   background: #555;
   border: 2px solid #fffdd6;
@@ -51,10 +116,7 @@
 .ProgressBar > span {
   display: block;
   height: 100%;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-radius: 20px;
   background-color: #a3b552;
   background-image: linear-gradient(
     to bottom,

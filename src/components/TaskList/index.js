@@ -49,7 +49,13 @@ const TaskList = () => {
             <span style={{ width: `${task.progress}%` }} />
           </div>
         </div>
-        <div className={styles.Apply}>Назначить рубашку</div>
+        <button
+          type="button"
+          style={{ opacity: task.progress === 100 ? 1 : 0 }}
+          className={styles.Apply}
+        >
+          Назначить рубашку
+        </button>
       </div>
     ));
 
@@ -59,17 +65,40 @@ const TaskList = () => {
       updateTimeleft(moment.duration(moment(endTime).diff(moment().utc()), 'seconds'));
     }, 1000); */
 
-    if (timeLeft) {
-      const viewTime = timeLeft._data;
-      return (
-        <>
-          <div style={{ textAlign: 'center' }}>{`${viewTime.days}:${viewTime.hours}:${viewTime.minutes}:${viewTime.seconds}`}</div>
-          <div className={styles.List}>{tasksView}</div>
-        </>
-      );
-    }
+    const viewTime = timeLeft._data;
+    return (
+      <>
+        <div className={styles.Timer}>
+          <div className={`${styles.TimerDetails} ${styles.TimerDays}`}>
+            <span className={styles.TimerTime}>{viewTime.days}</span>
+            <span className={styles.TimerText}>дней</span>
+          </div>
+          <div className={`${styles.TimerDetails} ${styles.TimerHours}`}>
+            <span className={styles.TimerTime}>{viewTime.hours}</span>
+            <span className={styles.TimerText}>часов
+            </span>
+          </div>
+          <div className={`${styles.TimerDetails} ${styles.TimerMinutes}`}>
+            <span className={styles.TimerTime}>{viewTime.minutes}</span>
+            <span className={styles.TimerText}>минут</span>
+          </div>
+          <div className={`${styles.TimerDetails} ${styles.TimerSeconds}`}>
+            <span className={styles.TimerTime}>{viewTime.seconds}</span>
+            <span className={styles.TimerText}>секунд</span>
+          </div>
+        </div>
+        <div className={styles.List}>{tasksView}</div>
+      </>
+    );
   }
-  return <div className="lds-ring"><div /><div /><div /><div /></div>;
+  return (
+    <>
+      <div className={styles.Timer} />
+      <div className={styles.List}>
+        <div className="lds-ring"><div /><div /><div /><div /></div>
+      </div>
+    </>
+  );
 };
 
 export default TaskList;
