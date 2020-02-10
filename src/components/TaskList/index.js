@@ -51,7 +51,7 @@ const TaskList = () => {
         <div className={styles.buttonContainer}>
           <button
             type="button"
-            style={{ opacity: task.progress === 100 ? 1 : 0 }}
+            style={{ display: task.progress === 100 ? true : 'none' }}
             className={styles.Apply}
             onClick={handleClick}
           >
