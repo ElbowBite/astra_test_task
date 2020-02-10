@@ -9,6 +9,8 @@ const TaskList = () => {
   const [endTime, updateEndTime] = useState();
   const [timeLeft, updateTimeleft] = useState();
 
+  const timer = React.useRef();
+
   const taskTypes = {
     time: 'Выйграть три игры, каждую менее чем за 3 минуты',
     kings: 'Выйграть три игры, разложив всех королей',
@@ -23,21 +25,20 @@ const TaskList = () => {
         neededTasks.length = 3;
         updateTList(neededTasks);
         updateEndTime(data.endsAt);
-        updateTimeleft(moment.duration(moment(data.endsAt).diff(moment().utc()), 'seconds'));
+        updateTimeleft(moment(data.endsAt).diff(moment().utc()));
       })
       .catch((err) => alert(err));
   }, []);
 
   useEffect(() => {
-    if (endTime) {
+    if (timeLeft) {
       console.log('UseEffect with timer called!');
-      const timer = setInterval(() => {
-        updateTimeleft(moment.duration(moment(endTime).diff(moment().utc()), 'seconds'));
+      timer.current = setInterval(() => {
+        updateTimeleft(timeLeft - 1);
       }, 1000);
-      return clearInterval(timer);
     }
-    return undefined;
-  });
+    return clearInterval(timer.current);
+  }, [timeLeft]);
 
   if (timeLeft) {
     const tasksView = tList.map((task) => (
@@ -61,11 +62,8 @@ const TaskList = () => {
 
     console.log(endTime);
     console.log(timeLeft);
-    /* const timer = setInterval(() => {
-      updateTimeleft(moment.duration(moment(endTime).diff(moment().utc()), 'seconds'));
-    }, 1000); */
 
-    const viewTime = timeLeft._data;
+    const viewTime = moment.duration(timeLeft, 'seconds')._data;
     return (
       <>
         <div className={styles.Timer}>
